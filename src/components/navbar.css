@@ -1,0 +1,46 @@
+.navbar {
+  height: 10vh;
+  background-color: var(--clr-primary);
+  padding: 0 1em;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  justify-content: space-between;
+  -ms-align-items: center;
+  align-items: center;
+  color: whitesmoke;
+}
+
+.nav__username {
+  font-size: 1.2em;
+  position: relative;
+}
+
+.nav__list {
+  display: none;
+  width: 100%;
+  right: 0;
+  position: absolute;
+  text-align: center;
+  background-color: whitesmoke;
+  color: var(--clr-primary);
+  list-style: none;
+  font-size: 1rem;
+  z-index: 1;
+}
+
+.nav__username:hover .nav__list {
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.nav__item {
+  padding: 0.4rem 0;
+  border-bottom: 1px rgba(42, 126, 215, 0.3) solid;
+}
+
+.nav__item:hover {
+  color: var(--clr-accent);
+}
