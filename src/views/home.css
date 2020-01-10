@@ -1,0 +1,124 @@
+section {
+  min-height: 100vh;
+}
+
+.yourblog {
+  color: var(--clr-primary);
+}
+
+.section--landing {
+  position: relative;
+  overflow: hidden;
+}
+.section--landing::after {
+  position: absolute;
+  content: "";
+  width: 200vmax;
+  height: 200vmax;
+  background-color: var(--clr-primary);
+  left: -30%;
+  top: 60%;
+  transform: rotateZ(80deg);
+}
+
+.landing__text {
+  position: absolute;
+  font-size: 2.5em;
+  top: 40%;
+  left: 5%;
+  text-align: left;
+  color: var(--clr-accent);
+}
+
+.section--description,
+.section--features {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  justify-content: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+
+.blue-box {
+  height: 90vh;
+  flex-basis: 50%;
+  background-color: var(--clr-primary);
+  align-self: flex-end;
+}
+
+.description__text {
+  width: 50%;
+  padding: 2rem;
+  font-size: 2em;
+  color: var(--clr-accent);
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.description__p {
+  padding: 3rem 0 0;
+}
+
+.features__list {
+  width: 50%;
+  list-style: none;
+  padding-left: 5rem;
+  font-size: 2rem;
+}
+
+.features__item {
+  color: var(--clr-accent);
+  font-weight: 600;
+}
+
+.features__item + .features__item {
+  padding-top: 2em;
+}
+
+.section--login {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  -ms-align-items: center;
+  align-items: center;
+}
+
+.login-link {
+  font-size: 2em;
+  padding: 1rem 2rem;
+  background-color: var(--clr-primary);
+  color: white;
+  margin: auto;
+  border-radius: 15px;
+  border: 1px var(--clr-primary) solid;
+  transition: color 150ms ease-in-out, border 150ms ease-in-out,
+    background-color 150ms ease-in-out;
+}
+
+.login-link:hover {
+  background-color: white;
+  color: var(--clr-primary);
+}
+
+.footer {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  justify-content: space-around;
+  -ms-align-items: center;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 5px;
+  color: var(--clr-primary);
+}
+
+.footer__item {
+  display: inline-block;
+  width: 25%;
+}
