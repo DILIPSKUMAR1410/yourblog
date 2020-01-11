@@ -44,3 +44,7 @@
 .nav__item:hover {
   color: var(--clr-accent);
 }
+
+.logo__img {
+  max-height: 10vh;
+}

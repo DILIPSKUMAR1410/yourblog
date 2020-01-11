@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
 
+import logo from "../public/images/logo_white.png";
+
 class NavBar extends Component {
   state = {
     username: "Rambor.me"
@@ -11,7 +13,7 @@ class NavBar extends Component {
     return (
       <nav className="navbar">
         <div className="logo">
-          <img className="logo__img" src="" alt="" />
+          <img className="logo__img" src={logo} alt="" />
         </div>
         <div className="nav__username">
           {this.state.username}
@@ -20,7 +22,7 @@ class NavBar extends Component {
               <Link to="/create">New Entry</Link>
             </li>
             <li className="nav__item">
-              <Link to="/entries">My Entry</Link>
+              <Link to="/entries">My Entries</Link>
             </li>
             <li className="nav__item">
               <Link to="/">Sign Out</Link>

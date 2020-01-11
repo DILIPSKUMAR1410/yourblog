@@ -7,7 +7,7 @@ import "./home.css";
 class Home extends Component {
   render() {
     return (
-      <div className="home">
+      <React.Fragment>
         <NavBar />
         <section className="section--landing">
           <div className="landing__text">
@@ -52,7 +52,7 @@ class Home extends Component {
             </span>
           </div>
         </section>
-      </div>
+      </React.Fragment>
     );
   }
 }
