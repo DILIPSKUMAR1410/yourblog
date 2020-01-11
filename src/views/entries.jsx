@@ -5,11 +5,11 @@ import "./entries.css";
 
 class Entries extends Component {
   state = {
-    posts: JSON.parse(localStorage.getItem("yourblog.posts") || [])
+    posts: JSON.parse(localStorage.getItem("yourblog.posts")) || []
   };
 
   handleDelete = id => {
-    let posts = JSON.parse(localStorage.getItem("yourblog.posts"));
+    let posts = JSON.parse(localStorage.getItem("yourblog.posts")) || [];
     // eslint-disable-next-line
     posts = posts.filter(post => post.id != id);
     localStorage.setItem("yourblog.posts", JSON.stringify(posts));
