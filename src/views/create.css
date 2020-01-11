@@ -53,3 +53,20 @@
   background-color: var(--clr-primary);
   color: whitesmoke;
 }
+
+.editor-wrapper {
+  box-sizing: border-box;
+  width: 60vw;
+  min-height: 50vh;
+  border: 1px var(--clr-primary) solid;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+}
+
+.editor-toolbar {
+  border-radius: 10px;
+}
+.editor-textarea {
+  padding: 0 1rem;
+  line-height: 0.1rem;
+}

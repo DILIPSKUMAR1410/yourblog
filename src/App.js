@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Home from "./views/home";
+import Login from "./views/login";
 import Dashboard from "./views/dashboard";
 import Create from "./views/create";
 import Edit from "./views/edit";
@@ -14,6 +15,7 @@ function App() {
     <div className="App">
       <Router>
         <Route exact path="/" component={Home} />
+        <Route path="/login" component={Login} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/create" component={Create} />
         <Route path="/edit/:id" component={Edit} />

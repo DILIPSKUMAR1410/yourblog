@@ -12,9 +12,11 @@ class NavBar extends Component {
   render() {
     return (
       <nav className="navbar">
-        <div className="logo">
-          <img className="logo__img" src={logo} alt="" />
-        </div>
+        <Link to="/">
+          <div className="logo">
+            <img className="logo__img" src={logo} alt="" />
+          </div>
+        </Link>
         <div className="nav__username">
           {this.state.username}
           <ul className="nav__list">

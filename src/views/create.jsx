@@ -1,5 +1,11 @@
 import React, { Component } from "react";
 import NavBar from "../components/navbar";
+import { EditorState, convertToRaw } from "draft-js";
+import draftToHtml from "draftjs-to-html";
+import { Editor } from "react-draft-wysiwyg";
+
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+
 import "./create.css";
 class Create extends Component {
   constructor() {
@@ -9,6 +15,7 @@ class Create extends Component {
       const { title, tags, content } = this.props.post;
       this.state = {
         edit: true,
+        editorState: EditorState.createEmpty(),
         inputs: {
           title,
           tags,
@@ -18,6 +25,7 @@ class Create extends Component {
     } else {
       this.state = {
         edit: false,
+        editorState: EditorState.createEmpty(),
         inputs: {
           title: "",
           tags: "",
@@ -26,6 +34,17 @@ class Create extends Component {
       };
     }
   }
+
+  onEditorStateChange = editorState => {
+    this.setState({
+      editorState,
+      inputs: {
+        ...this.state.inputs,
+        content: draftToHtml(convertToRaw(editorState.getCurrentContent()))
+      }
+    });
+    console.log(this.state.inputs.content);
+  };
 
   clickHandler = e => {
     e.preventDefault();
@@ -53,6 +72,7 @@ class Create extends Component {
   };
 
   render() {
+    const editorState = this.state.editorState;
     return (
       <React.Fragment>
         <NavBar />
@@ -72,12 +92,12 @@ class Create extends Component {
               className="form__input input--tags"
               placeholder="Tags"
             />
-            <textarea
-              onChange={this.handleChange}
-              name="content"
-              value={this.state.inputs.content}
-              className="form__input input--content"
-              placeholder="Content"
+            <Editor
+              editorState={editorState}
+              wrapperClassName="editor-wrapper"
+              editorClassName="editor-textarea"
+              toolbarClassName="editor-toolbar"
+              onEditorStateChange={this.onEditorStateChange}
             />
             <input
               type="submit"

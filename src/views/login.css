@@ -1,0 +1,46 @@
+.login-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 40vw;
+  height: 60vh;
+  margin: 4rem auto;
+  background-color: whitesmoke;
+  border-radius: 15px;
+  border: 2px var(--clr-primary) solid;
+  box-shadow: 0 0 5px var(--clr-primary);
+}
+
+.login__heading {
+  margin-bottom: 1.2rem;
+}
+
+.login__input {
+  margin-bottom: 1rem;
+  background-color: white;
+  color: var(--clr-primary);
+  border: 1px var(--clr-primary) solid;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: box-shadow 150ms ease-in-out;
+}
+
+.login__input:focus {
+  box-shadow: 0 0 5px var(--clr-primary);
+}
+
+.login__submit {
+  all: unset;
+  color: var(--clr-primary);
+  background-color: white;
+  padding: 0.5rem 0.8rem;
+  border-radius: 10px;
+  border: 1px var(--clr-primary) solid;
+  transition: color 150ms ease-in-out, background-color 150ms ease-in-out;
+}
+
+.login__submit:hover {
+  color: whitesmoke;
+  background-color: var(--clr-primary);
+}

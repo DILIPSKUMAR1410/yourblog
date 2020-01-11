@@ -25,7 +25,10 @@ class View extends Component {
       <div className="post">
         <h2 className="post__title">{post.title}</h2>
         <div className="post__tags">{this.getTags(post.tags)}</div>
-        <div className="post__content">{post.content}</div>
+        <div
+          className="post__content"
+          dangerouslySetInnerHTML={{ __html: post.content }}
+        ></div>
         <Link to={`/edit/${post.id}`} className="post__edit">
           Edit
         </Link>

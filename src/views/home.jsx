@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import NavBar from "../components/navbar";
 
 import "./home.css";
@@ -38,11 +38,9 @@ class Home extends Component {
           </ul>
         </section>
         <section className="section--login">
-          <Router>
-            <Link to="/login" className="login-link">
-              Login
-            </Link>
-          </Router>
+          <Link to="/login" className="login-link">
+            Login
+          </Link>
           <div className="footer">
             <span className="footer__item footer__item--privacy">
               Privacy/Terms
