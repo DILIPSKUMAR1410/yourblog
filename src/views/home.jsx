@@ -2,13 +2,16 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import NavBar from "../components/navbar";
 
+import img1 from "../public/images/blogging.png";
+import img2 from "../public/images/typewriter.png";
+
 import "./home.css";
 
 class Home extends Component {
   render() {
     return (
       <React.Fragment>
-        <NavBar />
+        <NavBar loggedIn={false} />
         <section className="section--landing">
           <div className="landing__text">
             Welcome to the world of decentralized <br /> blogging...
@@ -26,10 +29,14 @@ class Home extends Component {
               and privacy to the user.
             </p>
           </div>
-          <div className="blue-box blue-box--description"></div>
+          <div className="blue-box blue-box--description">
+            <img src={img1} alt="" style={{ maxWidth: "100%" }} />
+          </div>
         </section>
         <section className="section--features">
-          <div className="blue-box blue-box--features"></div>
+          <div className="blue-box blue-box--features">
+            <img src={img2} alt="" style={{ maxWidth: "100%" }} />
+          </div>
           <ul className="features__list">
             <li className="features__item">Decentralized</li>
             <li className="features__item">Text Editor</li>

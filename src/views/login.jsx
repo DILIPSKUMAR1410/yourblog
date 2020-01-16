@@ -18,13 +18,15 @@ class Login extends Component {
   onSubmitHandler = e => {
     e.preventDefault();
     // Fix: Change this.
+    console.log("Loggin in");
+
     window.location.href = "/entries";
   };
 
   render() {
     return (
       <React.Fragment>
-        <NavBar />
+        <NavBar loggedIn={false} />
         <form action="" className="login-form" onSubmit={this.onSubmitHandler}>
           <h2 className="login__heading">Login</h2>
           <input
