@@ -10,18 +10,20 @@ import {
 const appConfig = new AppConfig()
 const options = { decrypt: false };
 const userSession = new UserSession({ appConfig: appConfig })
+let state = {}
 
 class Entries extends Component {
   constructor() {
     super();
-    console.log(userSession.isUserSignedIn());
     userSession.getFile("posts2.json", options)
-  .then((content) => {
-      console.log(userSession.loadUserData().username)
-      localStorage.setItem('yourblog.posts', JSON.parse(content));
-  });
+  .then((content) => {      
+      localStorage.setItem('yourblog.posts', content);
+       this.state = {
+       posts: localStorage.getItem("yourblog.posts") || []
+       };
+      });
     }
-  
+    
   componentDidMount() {
     if (userSession.isSignInPending()) {
       userSession.handlePendingSignIn().then((userData) => {
