@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import NavBar from "../components/navbar";
 import "./login.css";
+import {  UserSession, AppConfig } from 'blockstack';
 
+const appConfig = new AppConfig()
+const options = { decrypt: false };
+const userSession = new UserSession({ appConfig: appConfig })
 class Login extends Component {
   state = {
     username: "",
@@ -19,8 +23,7 @@ class Login extends Component {
     e.preventDefault();
     // Fix: Change this.
     console.log("Loggin in");
-
-    window.location.href = "/entries";
+    userSession.redirectToSignIn();
   };
 
   render() {

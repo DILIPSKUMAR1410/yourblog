@@ -3,10 +3,14 @@ import NavBar from "../components/navbar";
 import { EditorState, convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import { Editor } from "react-draft-wysiwyg";
-
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-
 import "./create.css";
+import {  UserSession, AppConfig } from 'blockstack';
+
+const appConfig = new AppConfig()
+const options = { encrypt: false };
+const userSession = new UserSession({ appConfig: appConfig })
+
 class Create extends Component {
   constructor() {
     super();
@@ -43,7 +47,6 @@ class Create extends Component {
         content: draftToHtml(convertToRaw(editorState.getCurrentContent()))
       }
     });
-    console.log(this.state.inputs.content);
   };
 
   clickHandler = e => {
@@ -60,8 +63,11 @@ class Create extends Component {
       date: new Date().toDateString()
     });
 
-    localStorage.setItem("yourblog.posts", JSON.stringify(posts));
-    window.location.href = "/entries";
+    userSession.putFile("posts2.json", JSON.stringify(posts), options)
+    .then(() => {
+      localStorage.setItem('yourblog.posts', JSON.stringify(posts));
+          window.location.href = "/entries";
+  });
   };
 
   handleChange = e => {

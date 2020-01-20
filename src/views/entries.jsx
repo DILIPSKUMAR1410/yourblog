@@ -2,8 +2,33 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import NavBar from "../components/navbar";
 import "./entries.css";
+import {
+  UserSession,
+  AppConfig
+} from 'blockstack';
+
+const appConfig = new AppConfig()
+const options = { decrypt: false };
+const userSession = new UserSession({ appConfig: appConfig })
 
 class Entries extends Component {
+  constructor() {
+    super();
+    console.log(userSession.isUserSignedIn());
+    userSession.getFile("posts2.json", options)
+  .then((content) => {
+      console.log(userSession.loadUserData().username)
+      localStorage.setItem('yourblog.posts', JSON.parse(content));
+  });
+    }
+  
+  componentDidMount() {
+    if (userSession.isSignInPending()) {
+      userSession.handlePendingSignIn().then((userData) => {
+        this.setState({ userData: userData})
+      });
+    }
+  }
   state = {
     posts: JSON.parse(localStorage.getItem("yourblog.posts")) || []
   };

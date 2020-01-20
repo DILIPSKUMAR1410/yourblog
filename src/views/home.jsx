@@ -6,8 +6,36 @@ import img1 from "../public/images/blogging.png";
 import img2 from "../public/images/typewriter.png";
 
 import "./home.css";
+import {
+  UserSession,
+  AppConfig
+} from 'blockstack';
 
+const appConfig = new AppConfig()
+const userSession = new UserSession({ appConfig: appConfig })
 class Home extends Component {
+
+
+  handleSignin = (e) => {
+    e.preventDefault();
+    userSession.redirectToSignIn();
+  }
+
+  handleSignOut(e) {
+    e.preventDefault();
+    userSession.signUserOut(window.location.origin);
+  }
+
+
+  componentDidMount() {
+    if (userSession.isSignInPending()) {
+      userSession.handlePendingSignIn().then((userData) => {
+        this.props.history.push("/entries");
+        this.setState({ userData: userData})
+      });
+    }
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -45,9 +73,8 @@ class Home extends Component {
           </ul>
         </section>
         <section className="section--login">
-          <Link to="/login" className="login-link">
-            Login
-          </Link>
+          { !userSession.isUserSignedIn() ?                      
+          <button className="login-link" onClick={this.handleSignin}>Login with BlockStack</button> : <button className="login-link" onClick={this.handleSignOut}>Logout</button>} 
           <div className="footer">
             <span className="footer__item footer__item--privacy">
               Privacy/Terms
