@@ -2,44 +2,45 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import NavBar from "../components/navbar";
 import "./entries.css";
-import {
-  UserSession,
-  AppConfig
-} from 'blockstack';
+import { UserSession, AppConfig } from "blockstack";
 
-const appConfig = new AppConfig()
+const appConfig = new AppConfig();
 const options = { decrypt: false };
-const userSession = new UserSession({ appConfig: appConfig })
-let state = {}
+const userSession = new UserSession({ appConfig: appConfig });
 
 class Entries extends Component {
-  constructor() {
-    super();
-    userSession.getFile("posts2.json", options)
-  .then((content) => {      
-      localStorage.setItem('yourblog.posts', content);
-       this.state = {
-       posts: localStorage.getItem("yourblog.posts") || []
-       };
-      });
-    }
-    
-  componentDidMount() {
-    if (userSession.isSignInPending()) {
-      userSession.handlePendingSignIn().then((userData) => {
-        this.setState({ userData: userData})
-      });
-    }
-  }
   state = {
     posts: JSON.parse(localStorage.getItem("yourblog.posts")) || []
   };
+
+  async componentDidMount() {
+    if (userSession.isSignInPending()) {
+      userSession.handlePendingSignIn().then(userData => {
+        this.setState({ userData: userData });
+      });
+    }
+    try {
+      const content = await userSession.getFile("posts2.json", options);
+      localStorage.setItem("yourblog.posts", content);
+      this.setState({
+        posts: JSON.parse(localStorage.getItem("yourblog.posts")) || []
+      });
+    } catch (err) {
+      console.error("Error" + err);
+    }
+  }
 
   handleDelete = id => {
     let posts = JSON.parse(localStorage.getItem("yourblog.posts")) || [];
     // eslint-disable-next-line
     posts = posts.filter(post => post.id != id);
-    localStorage.setItem("yourblog.posts", JSON.stringify(posts));
+
+    userSession
+      .putFile("posts2.json", JSON.stringify(posts), {encrypt: false})
+      .then(() => {
+        localStorage.setItem("yourblog.posts", JSON.stringify(posts));
+      });
+
     this.setState({ posts });
   };
 
@@ -48,6 +49,7 @@ class Entries extends Component {
   };
 
   getEntries = () => {
+    console.log(this.state)
     return this.state.posts.map(entry => {
       return (
         <li key={entry.id} className="entries__item">

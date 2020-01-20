@@ -4,14 +4,11 @@ import "./navbar.css";
 
 import logo_white from "../public/images/logo_white.png";
 import logo_blue from "../public/images/logo_blue.png";
-import {
-  UserSession,
-  AppConfig
-} from 'blockstack';
+import { UserSession, AppConfig } from "blockstack";
 
-const appConfig = new AppConfig()
+const appConfig = new AppConfig();
 const options = { decrypt: false };
-const userSession = new UserSession({ appConfig: appConfig })
+const userSession = new UserSession({ appConfig: appConfig });
 
 class NavBar extends Component {
   constructor(props) {
@@ -23,7 +20,7 @@ class NavBar extends Component {
     }
     this.state = {
       loggedIn,
-      username: userSession.loadUserData().username
+      username: loggedIn ? userSession.loadUserData().username : ""
     };
   }
 

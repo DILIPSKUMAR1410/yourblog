@@ -5,15 +5,15 @@ import draftToHtml from "draftjs-to-html";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "./create.css";
-import {  UserSession, AppConfig } from 'blockstack';
+import { UserSession, AppConfig } from "blockstack";
 
-const appConfig = new AppConfig()
+const appConfig = new AppConfig();
 const options = { encrypt: false };
-const userSession = new UserSession({ appConfig: appConfig })
+const userSession = new UserSession({ appConfig: appConfig });
 
 class Create extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     if (this.props && this.props.post) {
       console.log(this.props.post);
       const { title, tags, content } = this.props.post;
@@ -63,11 +63,12 @@ class Create extends Component {
       date: new Date().toDateString()
     });
 
-    userSession.putFile("posts2.json", JSON.stringify(posts), options)
-    .then(() => {
-      localStorage.setItem('yourblog.posts', JSON.stringify(posts));
-          window.location.href = "/entries";
-  });
+    userSession
+      .putFile("posts2.json", JSON.stringify(posts), options)
+      .then(() => {
+        localStorage.setItem("yourblog.posts", JSON.stringify(posts));
+        window.location.href = "/entries";
+      });
   };
 
   handleChange = e => {
