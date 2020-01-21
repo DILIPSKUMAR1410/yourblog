@@ -17,6 +17,7 @@ class Home extends Component {
 
   handleSignOut(e) {
     e.preventDefault();
+    localStorage.setItem('yourblog.posts', null);
     userSession.signUserOut(window.location.origin);
   }
 
