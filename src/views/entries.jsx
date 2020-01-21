@@ -20,7 +20,7 @@ class Entries extends Component {
       });
     }
     try {
-      const content = await userSession.getFile("posts2.json", options);
+      const content = await userSession.getFile("posts.json", options);
       localStorage.setItem("yourblog.posts", content);
       this.setState({
         posts: JSON.parse(localStorage.getItem("yourblog.posts")) || []
@@ -36,7 +36,7 @@ class Entries extends Component {
     posts = posts.filter(post => post.id != id);
 
     userSession
-      .putFile("posts2.json", JSON.stringify(posts), {encrypt: false})
+      .putFile("posts.json", JSON.stringify(posts), {encrypt: false})
       .then(() => {
         localStorage.setItem("yourblog.posts", JSON.stringify(posts));
       });
