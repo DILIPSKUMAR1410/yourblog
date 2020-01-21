@@ -64,7 +64,7 @@ class Create extends Component {
     });
 
     userSession
-      .putFile("posts2.json", JSON.stringify(posts), options)
+      .putFile("posts.json", JSON.stringify(posts), options)
       .then(() => {
         localStorage.setItem("yourblog.posts", JSON.stringify(posts));
         window.location.href = "/entries";
