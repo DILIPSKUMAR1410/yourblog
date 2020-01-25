@@ -50,14 +50,29 @@ class NavBar extends Component {
         style={!this.state.loggedIn ? { backgroundColor: "white" } : {}}
       >
         <Link to="/">
-          <div className="logo">
+          <div
+            className="logo"
+            style={{ color: this.state.loggedIn ? "white" : "blue" }}
+          >
             <img
               className="logo__img"
               src={this.state.loggedIn ? logo_white : logo_blue}
               alt=""
             />
+            yourblog
           </div>
         </Link>
+        {!this.state.loggedIn && userSession.isUserSignedIn() ? (
+          <Link
+            to="/entries"
+            className="nav__profile"
+            style={{ color: "blue" }}
+          >
+            Go to Profile
+          </Link>
+        ) : (
+          ""
+        )}
         {this.state.loggedIn ? this.getList() : ""}
       </nav>
     );
