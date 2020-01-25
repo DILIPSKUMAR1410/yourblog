@@ -17,7 +17,7 @@ class Home extends Component {
 
   handleSignOut(e) {
     e.preventDefault();
-    localStorage.setItem('yourblog.posts', null);
+    localStorage.setItem("yourblog.posts", null);
     userSession.signUserOut(window.location.origin);
   }
 
@@ -77,9 +77,6 @@ class Home extends Component {
             </button>
           )}
           <div className="footer">
-            <span className="footer__item footer__item--privacy">
-              Privacy/Terms
-            </span>
             <span className="footer__item footer__item--copyright">
               Copyright @ yourblog 2019
             </span>
