@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import NavBar from "../components/navbar";
-import { EditorState, convertToRaw } from "draft-js";
+import { EditorState, convertToRaw, ContentState } from "draft-js";
 import draftToHtml from "draftjs-to-html";
+import htmlToDraft from "html-to-draftjs";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "./create.css";
@@ -17,9 +18,18 @@ class Create extends Component {
     if (this.props && this.props.post) {
       console.log(this.props.post);
       const { title, tags, content } = this.props.post;
+
+      const blocksFromHtml = htmlToDraft(content);
+      const { contentBlocks, entityMap } = blocksFromHtml;
+      const contentState = ContentState.createFromBlockArray(
+        contentBlocks,
+        entityMap
+      );
+      const editorState = EditorState.createWithContent(contentState);
+
       this.state = {
         edit: true,
-        editorState: EditorState.createEmpty(),
+        editorState,
         inputs: {
           title,
           tags,
