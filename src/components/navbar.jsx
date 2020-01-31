@@ -36,11 +36,17 @@ class NavBar extends Component {
             <Link to="/entries">My Entries</Link>
           </li>
           <li className="nav__item">
-            <Link to="/">Sign Out</Link>
+            <span onClick={this.handleSignOut}>Sign Out</span>
           </li>
         </ul>
       </div>
     );
+  };
+
+  handleSignOut = e => {
+    e.preventDefault();
+    localStorage.setItem("yourblog.posts", null);
+    userSession.signUserOut(window.location.origin);
   };
 
   render() {
@@ -59,7 +65,7 @@ class NavBar extends Component {
               src={this.state.loggedIn ? logo_white : logo_blue}
               alt=""
             />
-            yourblog
+            <span className="logo__text">yourblog</span>
           </div>
         </Link>
         {!this.state.loggedIn && userSession.isUserSignedIn() ? (

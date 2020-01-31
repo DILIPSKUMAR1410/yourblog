@@ -57,3 +57,7 @@
   color: blue;
   font-weight: bold;
 }
+
+.logo__text {
+  font-size: 1.5em;
+}

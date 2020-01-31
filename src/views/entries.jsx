@@ -36,7 +36,7 @@ class Entries extends Component {
     posts = posts.filter(post => post.id != id);
 
     userSession
-      .putFile("posts.json", JSON.stringify(posts), {encrypt: false})
+      .putFile("posts.json", JSON.stringify(posts), { encrypt: false })
       .then(() => {
         localStorage.setItem("yourblog.posts", JSON.stringify(posts));
       });
@@ -44,12 +44,12 @@ class Entries extends Component {
     this.setState({ posts });
   };
 
-  handleShare = id => {
-    console.log("share post" + id);
-  };
+  // handleShare = id => {
+  //   console.log("share post" + id);
+  // };
 
   getEntries = () => {
-    console.log(this.state)
+    console.log(this.state);
     return this.state.posts.map(entry => {
       return (
         <li key={entry.id} className="entries__item">
@@ -73,7 +73,7 @@ class Entries extends Component {
           >
             Delete
           </button>
-          <button
+          {/* <button
             className="entry__item entry__item--share"
             onClick={e => {
               e.preventDefault();
@@ -81,7 +81,7 @@ class Entries extends Component {
             }}
           >
             Share
-          </button>
+          </button> */}
         </li>
       );
     });
