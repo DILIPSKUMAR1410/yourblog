@@ -9,7 +9,7 @@
   font-weight: 400;
   font-display: swap;
   src: local("Lato Regular"), local("Lato-Regular"),
-    url(https://fonts.gstatic.com/s/lato/v16/S6uyw4BMUTPHjx4wWw.ttf)
+    url(./Lato-Black.ttf)
       format("truetype");
 }
 
@@ -19,7 +19,7 @@
   font-weight: 400;
   font-display: swap;
   src: local("Montserrat Regular"), local("Montserrat-Regular"),
-    url(https://fonts.gstatic.com/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459Wlhzg.ttf)
+    url(./Montserrat-Black.ttf)
       format("truetype");
 }
 
